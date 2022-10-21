@@ -2,9 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "app/src/index.js",
+  "main": "index.js",
   "scripts": {
-     "start" : "nodemon app/src/index.js"
+     "start" : "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
