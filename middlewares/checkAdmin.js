@@ -1,4 +1,4 @@
-const { ACCESS_DENIED_ERR } = require("../errors");
+const { ACCESS_DENIED_ERR } = require("../app/src/errors");
 
 module.exports = (req,res,next) => {
     const currentUser = req.locals.user;
