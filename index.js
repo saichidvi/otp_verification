@@ -6,6 +6,8 @@ require("dotenv").config();
 
 const { PORT, MONGODB_URI, NODE_ENV,ORIGIN } = require("./config");
 const { API_ENDPOINT_NOT_FOUND_ERR, SERVER_ERR } = require("./errors");
+// const router = require("./routes/auth.route")
+const authRouter  = require("./routes/auth.route")
 
 
 //init express app 
@@ -43,7 +45,7 @@ app.get("/",(req,res) => {
 
 
 //routes middleware 
-app.use("/api/auth",authRoutes);
+app.use("/api/auth",authRouter);
 
 
 //page not found error handling middleware 
@@ -57,7 +59,7 @@ app.use("*",(req,res,next) => {
 
 
 //global error handling middleware 
-app.use((err,req,req,next) => {
+app.use((err,req,res,next) => {
     console.log(err);
     const status = err.status || 500;
     const message = err.message || SERVER_ERR;
@@ -74,8 +76,8 @@ async function main(){
     try {
         await mongoose.connect(MONGODB_URI,{
             useNewUrlParser : true,
-            useCreateIndex : true,
-            useFindAndMondify : false,
+            // useCreateIndex : true,
+            // useFindAndMondify : false,
             UseUnifiedTopology : true
         });
         console.log("database connected");

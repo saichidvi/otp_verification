@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const { JWT_DECODE_ERR } = require("../app/src/errors");
-const { JWT_SECRET } = require("../app/src/config");
+const { JWT_DECODE_ERR } = require("../errors");
+const { JWT_SECRET } = require("../config");
 
 exports.createJwtToken = (payload) => {
   const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "12h" });
