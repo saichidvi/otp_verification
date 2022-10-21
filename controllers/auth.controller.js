@@ -3,7 +3,6 @@ const { generateOTP, fast2sms } = require("../utils/otp.util");
 
 const {
     PHONE_NOT_FOUND_ERR,
-  
     PHONE_ALREADY_EXISTS_ERR,
     USER_NOT_FOUND_ERR,
     INCORRECT_OTP_ERR,
@@ -21,7 +20,6 @@ exports.createNewUser = async (req, res, next) => {
     try {
       let { phone, name } = req.body;
   
-  
       // check duplicate phone Number
       const phoneExist = await User.findOne({ phone });
   
@@ -29,8 +27,6 @@ exports.createNewUser = async (req, res, next) => {
         next({ status: 400, message: PHONE_ALREADY_EXISTS_ERR });
         return;
       }
-  
-  
       // create new user
       const createUser = new User({
         phone,

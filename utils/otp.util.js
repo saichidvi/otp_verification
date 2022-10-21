@@ -14,13 +14,21 @@ exports.generateOTP = (otp_length) => {
 };
 
 exports.fast2sms = async ({ message, contactNumber }, next) => {
+  console.log({message  : message , contactNumber : contactNumber})
+  console.log({FAST2SMS : FAST2SMS})
+  const {wallet} = await fast2sms.getWalletBalance(FAST2SMS);
+  if(wallet) {
+    console.log({wallet : wallet})
+  }
   try {
-    const res = await fast2sms.sendMessage({
+    const response = await fast2sms.sendMessage({
       authorization: FAST2SMS,
       message,
       numbers: [contactNumber],
     });
-    console.log(res);
+    if(response){
+      console.log({response : response})
+    }
   } catch (error) {
     next(error);
   }
